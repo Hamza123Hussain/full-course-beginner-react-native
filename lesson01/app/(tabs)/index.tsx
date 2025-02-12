@@ -8,7 +8,11 @@ const App: React.FC = () => {
   return (
     <View style={styles.container}>
       {/* ImageBackground allows us to set an image as the background */}
-      <ImageBackground source={IcedCoffee} style={styles.image}>
+      <ImageBackground
+        resizeMode="contain"
+        source={IcedCoffee}
+        style={styles.image}
+      >
         <Text style={styles.text}>Coffee Shop</Text>
       </ImageBackground>
     </View>
@@ -25,13 +29,15 @@ const styles = StyleSheet.create({
   image: {
     flex: 1, // Make the image cover the entire container
     justifyContent: 'center', // Center the text vertically
-    alignItems: 'center', // Center the text horizontally
+    width: '100%',
+    height: '100%',
   },
   text: {
     color: 'white', // White text for contrast
     fontSize: 42, // Large font size
     fontWeight: 'bold', // Bold text
     textAlign: 'center', // Center align the text
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
 })
 
