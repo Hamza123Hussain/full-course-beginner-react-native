@@ -1,43 +1,78 @@
-import { View, Text, StyleSheet, ImageBackground } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  Pressable,
+} from 'react-native'
 import React from 'react'
 import IcedCoffee from '@/assets/images/Iced-Caramel-Macchiato-f4a10f9.jpg' // Importing the image
+import { Link } from 'expo-router'
 
-// Renamed to 'App' (React components should start with a capital letter)
+// Functional Component for the Coffee Shop Home Page
 const App: React.FC = () => {
-  // Added React.FC for better TypeScript support
   return (
     <View style={styles.container}>
-      {/* ImageBackground allows us to set an image as the background */}
+      {/* Background Image */}
       <ImageBackground
-        resizeMode="contain"
         source={IcedCoffee}
+        resizeMode="contain"
         style={styles.image}
       >
-        <Text style={styles.text}>Coffee Shop</Text>
+        {/* Overlay for better text visibility */}
+        <View style={styles.overlay}>
+          {/* Shop Title */}
+          <Text style={styles.title}>Hamza Coffee Shop</Text>
+
+          {/* Explore Button */}
+          <Link href={'/explore'} asChild>
+            <Pressable style={styles.exploreButton}>
+              <Text style={styles.buttonText}>Explore</Text>
+            </Pressable>
+          </Link>
+        </View>
       </ImageBackground>
     </View>
   )
 }
 
-// Styling for the components
+// Styles for the Coffee Shop Home Page
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Makes the container fill the screen
-    flexDirection: 'column', // Arranges children vertically
-    backgroundColor: 'black', // Background color if image fails to load
+    flex: 1, // Makes the container fill the entire screen
+    backgroundColor: 'black', // Fallback background color in case image fails to load
   },
   image: {
-    flex: 1, // Make the image cover the entire container
-    justifyContent: 'center', // Center the text vertically
-    width: '100%',
-    height: '100%',
+    flex: 1, // Makes image cover the entire screen
+    justifyContent: 'center', // Centers content vertically
+    alignItems: 'center', // Centers content horizontally
   },
-  text: {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black overlay
+    padding: 20,
+    borderRadius: 15,
+    alignItems: 'center', // Ensures all content inside is centered
+  },
+  title: {
     color: 'white', // White text for contrast
-    fontSize: 42, // Large font size
-    fontWeight: 'bold', // Bold text
-    textAlign: 'center', // Center align the text
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    fontSize: 50, // Larger text for impact
+    fontWeight: 'bold', // Bold text for emphasis
+    textAlign: 'center',
+    letterSpacing: 2, // Spaced-out letters for a more premium feel
+    marginBottom: 20, // Adds spacing before the button
+  },
+  exploreButton: {
+    backgroundColor: 'rgba(255, 165, 0, 0.8)', // Orange transparent button
+    paddingVertical: 12, // Top and bottom padding
+    paddingHorizontal: 30, // Left and right padding
+    borderRadius: 8, // Rounded button edges
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    letterSpacing: 1,
   },
 })
 
